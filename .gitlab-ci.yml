@@ -1,0 +1,19 @@
+# Демонстрационный MR на доверенном shell-runner; окончательный зачёт выдаётся преподавателем.
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+stages: [test]
+variables:
+  GIT_DEPTH: '0'
+  PYTHONUTF8: '1'
+grade:
+  stage: test
+  tags: [qa-docker]
+  timeout: 1h
+  script:
+    - python ci_grade.py
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths: [product/artifacts/]
