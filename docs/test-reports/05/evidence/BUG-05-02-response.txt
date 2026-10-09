@@ -1,0 +1,16 @@
+PATCH /api/tickets/6eb337d0-3fb0-4f16-a152-109a59d4a042 (buggy)
+Тело: {"title":"ABC"}
+Ответ: 403
+{"error":{"message":"Изменять может только автор","request_id":"46b1d31ae3ef42b0a19a96ea3ae1b8c6"}}
+
+DELETE /api/tickets/6eb337d0-3fb0-4f16-a152-109a59d4a042 (buggy)
+Ответ: 403
+{"error":{"message":"Изменять может только автор","request_id":"cae9a0c0657e4958b993c817593f902a"}}
+
+PATCH /api/tickets/43a6a49d-01d4-4721-9607-ece7e2facc3a (fixed)
+Тело: {"title":"ABC"}
+Ответ: 404
+{"error":{"message":"Заявка не найдена","request_id":"d7a8e93494ff47b5b28f5c4b96da3eeb"}}
+
+DELETE /api/tickets/43a6a49d-01d4-4721-9607-ece7e2facc3a (fixed)
+Ответ: 404
