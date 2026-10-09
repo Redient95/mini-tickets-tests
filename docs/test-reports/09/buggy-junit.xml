@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="12" time="39.310" timestamp="2026-10-09T22:35:03.738842+03:00" hostname="LAPTOP-UAS2JBHT"><testcase classname="tests.api.test_access_and_states" name="test_user_cannot_read_another_users_ticket" time="5.138"><failure message="AssertionError: GET http://localhost:8192/api/tickets/bae4037f-00de-4f5f-a27a-fed03f73ebfa; status=200; request_id=p09-0f00013968d44164816a694d; body={&quot;id&quot;: &quot;bae4037f-00de-4f5f-a27a-fed03f73ebfa&quot;, &quot;author_id&quot;: &quot;9d7b0446-41b5-4260-95b6-c9d5244c372f&quot;, &quot;title&quot;: &quot;P09 заявка первого пользователя&quot;, &quot;priority&quot;: &quot;normal&quot;, &quot;status&quot;: &quot;new&quot;, &quot;created_at&quot;: &quot;2026-10-09T19:35:08.872235Z&quot;}">tests\api\test_access_and_states.py:15: in test_user_cannot_read_another_users_ticket
+    body = assert_error_response(response, 404)
+support\assertions.py:34: in assert_error_response
+    body = assert_json_response(response, expected_status)
+support\assertions.py:22: in assert_json_response
+    assert response.status_code == expected_status, ApiClient.describe(response)
+E   AssertionError: GET http://localhost:8192/api/tickets/bae4037f-00de-4f5f-a27a-fed03f73ebfa; status=200; request_id=p09-0f00013968d44164816a694d; body={"id": "bae4037f-00de-4f5f-a27a-fed03f73ebfa", "author_id": "9d7b0446-41b5-4260-95b6-c9d5244c372f", "title": "P09 заявка первого пользователя", "priority": "normal", "status": "new", "created_at": "2026-10-09T19:35:08.872235Z"}</failure></testcase><testcase classname="tests.api.test_access_and_states" name="test_operator_cannot_move_new_ticket_directly_to_closed" time="4.977"><failure message="AssertionError: PUT http://localhost:8192/api/tickets/67f2e7fb-7ff0-44fc-9f21-906ad87a94e5/status; status=200; request_id=p09-eed8bd1a144b42988e3f07ac; body={&quot;id&quot;: &quot;67f2e7fb-7ff0-44fc-9f21-906ad87a94e5&quot;, &quot;author_id&quot;: &quot;9668c0bf-87ee-4f2e-bac0-0b26990e01db&quot;, &quot;title&quot;: &quot;P09 проверка перехода&quot;, &quot;priority&quot;: &quot;normal&quot;, &quot;status&quot;: &quot;closed&quot;, &quot;created_at&quot;: &quot;2026-10-09T19:35:13.945146Z&quot;}">tests\api\test_access_and_states.py:36: in test_operator_cannot_move_new_ticket_directly_to_closed
+    assert_error_response(response, 409)
+support\assertions.py:34: in assert_error_response
+    body = assert_json_response(response, expected_status)
+support\assertions.py:22: in assert_json_response
+    assert response.status_code == expected_status, ApiClient.describe(response)
+E   AssertionError: PUT http://localhost:8192/api/tickets/67f2e7fb-7ff0-44fc-9f21-906ad87a94e5/status; status=200; request_id=p09-eed8bd1a144b42988e3f07ac; body={"id": "67f2e7fb-7ff0-44fc-9f21-906ad87a94e5", "author_id": "9668c0bf-87ee-4f2e-bac0-0b26990e01db", "title": "P09 проверка перехода", "priority": "normal", "status": "closed", "created_at": "2026-10-09T19:35:13.945146Z"}</failure></testcase><testcase classname="tests.api.test_access_and_states" name="test_new_filter_contains_only_new_tickets" time="4.690"><failure message="AssertionError: assert {'36973401-1727-4d1a-bb1d-5805ee9984a6', '30400337-533b-4c17-9288-0b26132541b5'} == {'36973401-1727-4d1a-bb1d-5805ee9984a6'}&#10;  &#10;  Extra items in the left set:&#10;  '30400337-533b-4c17-9288-0b26132541b5'&#10;  &#10;  Full diff:&#10;    {&#10;  +     '30400337-533b-4c17-9288-0b26132541b5',&#10;        '36973401-1727-4d1a-bb1d-5805ee9984a6',&#10;    }">tests\api\test_access_and_states.py:62: in test_new_filter_contains_only_new_tickets
+    assert returned_ids == {new_ticket["id"]}
+E   AssertionError: assert {'36973401-1727-4d1a-bb1d-5805ee9984a6', '30400337-533b-4c17-9288-0b26132541b5'} == {'36973401-1727-4d1a-bb1d-5805ee9984a6'}
+E     
+E     Extra items in the left set:
+E     '30400337-533b-4c17-9288-0b26132541b5'
+E     
+E     Full diff:
+E       {
+E     +     '30400337-533b-4c17-9288-0b26132541b5',
+E           '36973401-1727-4d1a-bb1d-5805ee9984a6',
+E       }</failure></testcase><testcase classname="tests.api.test_authentication" name="test_me_requires_token" time="2.039" /><testcase classname="tests.api.test_authentication" name="test_me_returns_current_public_user" time="2.342" /><testcase classname="tests.api.test_comments" name="test_operator_comment_keeps_operator_as_author" time="4.898"><failure message="AssertionError: assert '23da2582-21e1-4396-98da-52609352940c' == '00000000-0000-0000-0000-000000000003'&#10;  &#10;  - 00000000-0000-0000-0000-000000000003&#10;  + 23da2582-21e1-4396-98da-52609352940c">tests\api\test_comments.py:25: in test_operator_comment_keeps_operator_as_author
+    assert comment["author_id"] == operator["id"]
+E   AssertionError: assert '23da2582-21e1-4396-98da-52609352940c' == '00000000-0000-0000-0000-000000000003'
+E     
+E     - 00000000-0000-0000-0000-000000000003
+E     + 23da2582-21e1-4396-98da-52609352940c</failure></testcase><testcase classname="tests.api.test_tickets" name="test_create_and_read_ticket" time="2.353" /><testcase classname="tests.api.test_validation" name="test_ticket_title_boundaries[below-min]" time="2.291" /><testcase classname="tests.api.test_validation" name="test_ticket_title_boundaries[min]" time="2.440" /><testcase classname="tests.api.test_validation" name="test_ticket_title_boundaries[max]" time="2.631" /><testcase classname="tests.api.test_validation" name="test_ticket_title_boundaries[above-max]" time="2.649"><failure message="AssertionError: POST http://localhost:8192/api/tickets; status=201; request_id=p09-d2676038717044419e481363; body={&quot;id&quot;: &quot;2d3fe9e4-8cb0-4d7e-9a39-eb47f178a1e6&quot;, &quot;author_id&quot;: &quot;635cdc09-e673-446b-9640-8fe77d16f474&quot;, &quot;title&quot;: &quot;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&quot;, &quot;priority&quot;: &quot;normal&quot;, &quot;status&quot;: &quot;new&quot;, &quot;created_at&quot;: &quot;2026-10-09T19:35:40.304772Z&quot;}">tests\api\test_validation.py:28: in test_ticket_title_boundaries
+    body = assert_error_response(response, 422)
+support\assertions.py:34: in assert_error_response
+    body = assert_json_response(response, expected_status)
+support\assertions.py:22: in assert_json_response
+    assert response.status_code == expected_status, ApiClient.describe(response)
+E   AssertionError: POST http://localhost:8192/api/tickets; status=201; request_id=p09-d2676038717044419e481363; body={"id": "2d3fe9e4-8cb0-4d7e-9a39-eb47f178a1e6", "author_id": "635cdc09-e673-446b-9640-8fe77d16f474", "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "priority": "normal", "status": "new", "created_at": "2026-10-09T19:35:40.304772Z"}</failure></testcase><testcase classname="tests.api.test_validation" name="test_unknown_priority_is_rejected_without_side_effect" time="2.694"><failure message="AssertionError: POST http://localhost:8192/api/tickets; status=201; request_id=p09-19cd99b9aba74e82ad5902e5; body={&quot;id&quot;: &quot;beadd04b-9edc-4048-960e-d5446699805a&quot;, &quot;author_id&quot;: &quot;2c567bcf-34ce-4f3e-8966-393ab85a6762&quot;, &quot;title&quot;: &quot;P09 неизвестный приоритет&quot;, &quot;priority&quot;: &quot;normal&quot;, &quot;status&quot;: &quot;new&quot;, &quot;created_at&quot;: &quot;2026-10-09T19:35:42.976188Z&quot;}">tests\api\test_validation.py:47: in test_unknown_priority_is_rejected_without_side_effect
+    assert_error_response(response, 422)
+support\assertions.py:34: in assert_error_response
+    body = assert_json_response(response, expected_status)
+support\assertions.py:22: in assert_json_response
+    assert response.status_code == expected_status, ApiClient.describe(response)
+E   AssertionError: POST http://localhost:8192/api/tickets; status=201; request_id=p09-19cd99b9aba74e82ad5902e5; body={"id": "beadd04b-9edc-4048-960e-d5446699805a", "author_id": "2c567bcf-34ce-4f3e-8966-393ab85a6762", "title": "P09 неизвестный приоритет", "priority": "normal", "status": "new", "created_at": "2026-10-09T19:35:42.976188Z"}</failure></testcase></testsuite></testsuites>
