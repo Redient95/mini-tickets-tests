@@ -1,0 +1,15 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.13, pytest-8.3.5, pluggy-1.6.0 -- C:\Users\resta\repos\mini-tickets-tests\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\resta\repos\mini-tickets-tests
+configfile: pytest.ini
+plugins: allure-pytest-2.15.3, base-url-2.1.0, playwright-0.7.2, timeout-2.4.0
+collecting ... collected 4 items
+
+tests/ui/test_practice_13_tickets.py::test_user_creates_ticket_through_ui[desktop-chromium] PASSED [ 25%]
+tests/ui/test_practice_13_tickets.py::test_user_creates_ticket_through_ui[compact-chromium] PASSED [ 50%]
+tests/ui/test_practice_13_tickets.py::test_priority_is_synchronized_without_reload[desktop-chromium] PASSED [ 75%]
+tests/ui/test_practice_13_tickets.py::test_priority_is_synchronized_without_reload[compact-chromium] PASSED [100%]
+
+- generated xml file: C:\Users\resta\repos\mini-tickets-tests\docs\test-reports\13\evidence\pytest-results.xml -
+============================= 4 passed in 17.23s ==============================
